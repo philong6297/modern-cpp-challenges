@@ -1,5 +1,12 @@
 ---
-Checks: "*,-llvm-header-guard,-llvm-include-order,-bugprone-macro-parentheses,-fuchsia-*,-llvmlibc-*"
+Checks: >-
+  *,
+  -llvm-header-guard,
+  -llvm-include-order,
+  -bugprone-macro-parentheses,
+  -fuchsia-*,
+  -llvmlibc-*,
+  -altera-*,
 WarningsAsErrors: ""
 HeaderFilterRegex: ""
 AnalyzeTemporaryDtors: false

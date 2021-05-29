@@ -1,9 +1,0 @@
----
-Checks: "-cppcoreguidelines-avoid-magic-numbers,-cert-err58-cpp,-cppcoreguidelines-owning-memory,-readability-magic-numbers,-cppcoreguidelines-avoid-non-const-global-variables"
-WarningsAsErrors: ""
-HeaderFilterRegex: ""
-AnalyzeTemporaryDtors: false
-FormatStyle: file
-User: Long Ph. Le
-InheritParentConfig: true
----

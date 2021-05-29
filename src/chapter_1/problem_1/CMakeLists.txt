@@ -1,5 +1,0 @@
-add_executable(problem_1_1)
-target_sources(problem_1_1 PRIVATE main.cpp)
-target_compile_options(problem_1_1 PRIVATE ${LONGLP_DESIRED_COMPILE_OPTIONS})
-target_compile_features(problem_1_1 PRIVATE ${LONGLP_DESIRED_COMPILE_FEATURES})
-target_link_libraries(problem_1_1 PRIVATE benchmark::benchmark)
