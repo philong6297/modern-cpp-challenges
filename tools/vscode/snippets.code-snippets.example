@@ -1,0 +1,37 @@
+{
+  "Header": {
+    "scope": "cpp",
+    "prefix": "hdr",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "// Use of this source code is governed by a MIT license that can be",
+      "// found in the LICENSE file.",
+      "",
+      "#ifndef ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "#define ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "",
+      "",
+      "#endif  // ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}"
+    ]
+  },
+  "Copyright for //": {
+    "prefix": "copyright",
+    "scope": "cpp,javascript,typescript",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "// Use of this source code is governed by a MIT license that can be",
+      "// found in the LICENSE file.",
+      "",
+    ]
+  },
+  "Copyright for #": {
+    "prefix": "copyright",
+    "scope": "cmake",
+    "body": [
+      "# Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "# Use of this source code is governed by a MIT license that can be",
+      "# found in the LICENSE file.",
+      "",
+    ]
+  },
+}

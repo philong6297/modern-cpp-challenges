@@ -6,6 +6,7 @@
     "--clang-tidy",
     "--background-index",
     "--offset-encoding=utf-8",
+    "--header-insertion=never",
     "--compile-commands-dir=${workspaceFolder}/build"
   ],
   "clangd.path": "C:/Users/longlp/scoop/shims/clangd.exe",
@@ -16,8 +17,19 @@
   "cmake.configureSettings": {
     "CMAKE_TOOLCHAIN_FILE": "C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
   },
+  "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
   "cmake.generator": "Ninja",
+  "cmake.preferredGenerators": [
+    "Ninja"
+  ],
   "cmake.statusbar.visibility": "icon",
   "cmakeFormat.exePath": "C:/tools/miniconda3/Scripts/cmake-format.exe",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cpplint.cpplintPath": "C:/tools/miniconda3/Scripts/cpplint.exe",
+  "cpplint.repository": "${workspaceFolder}",
+  "cpplint.root": "src",
+  "cpplint.extensions": [
+    "cpp",
+    "hpp"
+  ]
 }
