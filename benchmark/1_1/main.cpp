@@ -27,7 +27,7 @@ auto main(int32_t argc, char** argv) -> int32_t {
     ->DisplayAggregatesOnly(true);
 
   benchmark::RegisterBenchmark(
-    "BM_Iteration_Brach_no_branch",
+    "BM_Iteration_Branch_no_branch",
     [](benchmark::State& state) {
       for ([[maybe_unused]] auto _ : state) {
         benchmark::DoNotOptimize(Problem_1_1::IterationWithNoBranches(

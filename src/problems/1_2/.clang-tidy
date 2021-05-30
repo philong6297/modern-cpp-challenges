@@ -1,0 +1,12 @@
+---
+Checks: >-
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -google-runtime-int
+WarningsAsErrors: ""
+HeaderFilterRegex: ""
+AnalyzeTemporaryDtors: false
+FormatStyle: file
+User: Long Ph. Le
+InheritParentConfig: true
+---
