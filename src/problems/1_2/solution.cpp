@@ -35,6 +35,7 @@ auto Problem_1_2::StandardGCD(const uintmax_t u, const uintmax_t v)
   return std::gcd(u, v);
 }
 
+// https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/
 // static
 auto Problem_1_2::BinaryGCD(uintmax_t u, uintmax_t v) -> uintmax_t {
   // Base cases: gcd(n, 0) = gcd(0, n) = n
