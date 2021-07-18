@@ -1,0 +1,4 @@
+name: modern-cpp-challenges
+dependencies:
+  - python=3.*
+  - scipy>=1.5.0
