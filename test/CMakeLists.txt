@@ -16,8 +16,8 @@ target_sources(
   project_test
   PRIVATE doctest_main.cpp
           # unittest for each solution
-          # ${LONGLP_PROJECT_SRC_DIR}/problems/1_1/solution_unittest.cpp
-          # ${LONGLP_PROJECT_SRC_DIR}/problems/1_2/solution_unittest.cpp
+          ${LONGLP_PROJECT_SRC_DIR}/problems/1_1/solution_unittest.cpp
+          ${LONGLP_PROJECT_SRC_DIR}/problems/1_2/solution_unittest.cpp
           ${LONGLP_PROJECT_SRC_DIR}/problems/1_3/solution_unittest.cpp
 )
 
