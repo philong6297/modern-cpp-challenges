@@ -1,0 +1,5 @@
+add_executable(1_1)
+target_compile_options(1_1 PRIVATE ${LONGLP_DESIRED_COMPILE_OPTIONS})
+target_compile_features(1_1 PRIVATE ${LONGLP_DESIRED_COMPILE_FEATURES})
+target_include_directories(1_1 PRIVATE ${LONGLP_PROJECT_SRC_DIR})
+target_sources(1_1 PRIVATE solution.cpp solution.hpp main.cpp)

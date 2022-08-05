@@ -1,0 +1,64 @@
+{
+  "Header": {
+    "scope": "cpp",
+    "prefix": "hdr",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "// Use of this source code is governed by a MIT license that can be",
+      "// found in the LICENSE file.",
+      "",
+      "#ifndef ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "#define ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "",
+      "",
+      "#endif  // ${TM_FILEPATH/(?:^.*\\\\src\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}"
+    ]
+  },
+  "Header-test": {
+    "scope": "cpp",
+    "prefix": "hdrt",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "// Use of this source code is governed by a MIT license that can be",
+      "// found in the LICENSE file.",
+      "",
+      "#ifndef ${TM_FILEPATH/(?:^.*\\\\test\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "#define ${TM_FILEPATH/(?:^.*\\\\test\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}",
+      "",
+      "",
+      "#endif  // ${TM_FILEPATH/(?:^.*\\\\test\\\\)?(\\w+)(?!\\w*$)|(\\W)|(\\w+)$/${1:/upcase}${2:+_}${3:/upcase}${3:+_}/g}"
+    ]
+  },
+  "Copyright for //": {
+    "prefix": "copyright",
+    "scope": "cpp,javascript,typescript",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "// Use of this source code is governed by a MIT license that can be",
+      "// found in the LICENSE file.",
+      "",
+    ]
+  },
+  "Copyright for #": {
+    "prefix": "copyright",
+    "scope": "cmake",
+    "body": [
+      "# Copyright ${CURRENT_YEAR} Long Le Phi. All rights reserved.",
+      "# Use of this source code is governed by a MIT license that can be",
+      "# found in the LICENSE file.",
+      "",
+    ]
+  },
+  "Add Cmake executable": {
+    "prefix": "longlp_add_exec",
+    "scope": "cmake",
+    "body": [
+      "# $1",
+      "add_executable($1)",
+      "target_sources($1 PRIVATE $1.cc)",
+      "target_compile_options($1 PRIVATE ${LONGLP_DESIRED_COMPILE_OPTIONS})",
+      "target_compile_features($1 PRIVATE ${LONGLP_DESIRED_COMPILE_FEATURES})",
+      "target_include_directories($1 PRIVATE ${LONGLP_PROJECT_SRC_DIR})",
+    ]
+  }
+}

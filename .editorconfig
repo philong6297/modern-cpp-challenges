@@ -1,0 +1,21 @@
+[*]
+charset = utf-8
+
+[*.xml]
+indent_style = space
+
+[{*.cpp, *.h, *.cc, *.hpp}]
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+max_line_length = 100
+trim_trailing_whitespace = true
+tab_width = 2
+
+[{CMakeLists.txt, *.cmake}]
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+tab_width = 2

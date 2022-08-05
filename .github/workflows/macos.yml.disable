@@ -1,0 +1,78 @@
+# Copyright 2022 Long Le Phi. All rights reserved.
+# Use of this source code is governed by a MIT license that can be
+# found in the LICENSE file.
+
+name: macos
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: ${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.compiler.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build_type: [Debug, Release]
+        os: [macos-12]
+        standard: [17]
+        compiler:
+          - { name: gcc-11, cc: gcc-11, cxx: g++-11 }
+          - { name: clang, cc: clang, cxx: clang++ }
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Get latest cmake and ninja
+        uses: lukka/get-cmake@latest
+
+      - name: Create Build Environment
+        run: |
+          cmake -E make_directory ${{ runner.workspace }}/build
+
+      # Restore from cache the previously built ports. If a "cache miss" occurs,
+      # then vcpkg is bootstrapped. Since a the vcpkg.json is being used, no packages
+      # are installed at this time.
+      - name: Restore artifacts, or setup vcpkg (do not install any package)
+        uses: lukka/run-vcpkg@v10.2
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/external/vcpkg"
+          vcpkgJsonGlob: "${{ github.workspace }}/vcpkg.json"
+
+          # This is needed to run `vcpkg install` command (after vcpkg is built) in
+          # the directory where vcpkg.json has been located. Default is false,
+          # It is highly suggested to let `run-cmake` to run vcpkg (i.e. `false`)
+          # (i.e. let CMake run `vcpkg install`) using the vcpkg.cmake toolchain.
+          runVcpkgInstall: false
+
+      - name: Configure
+        working-directory: ${{ runner.workspace }}/build
+        env:
+          CXX: ${{ matrix.compiler.cxx }}
+          CC: ${{ matrix.compiler.cc }}
+          LONGLP_VCPKG_TOOLCHAIN_FILE: |
+            ${{ github.workspace }}/external/vcpkg/scripts/buildsystems/vcpkg.cmake
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+                -DCMAKE_TOOLCHAIN_FILE=$LONGLP_VCPKG_TOOLCHAIN_FILE \
+                -DCMAKE_CXX_STANDARD=${{ matrix.standard }} \
+                -G Ninja \
+                ${{ github.workspace }}
+
+      - name: Build
+        working-directory: ${{ runner.workspace }}/build
+        run: |
+          threads=`sysctl -n hw.logicalcpu`
+          cmake --build . --config ${{ matrix.build_type }} --parallel $threads
+
+      - name: Test
+        if: matrix.build_type == 'Debug'
+        working-directory: ${{ runner.workspace }}/build
+        run: ctest -C ${{ matrix.build_type }} -V
+        env:
+          CTEST_OUTPUT_ON_FAILURE: True

@@ -1,0 +1,11 @@
+format:
+  tab_size: 2
+  line_width: 80
+  dangle_parens: true
+  use_tabchars: false
+  command_case: canonical
+  keyword_case: upper
+  enable_sort: true
+  autosort: true
+markup:
+  first_comment_is_literal: true

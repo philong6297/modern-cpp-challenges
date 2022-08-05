@@ -1,0 +1,41 @@
+{
+  // "C_Cpp.autocomplete": "Default",
+  // "C_Cpp.formatting": "clangFormat",
+  // "C_Cpp.intelliSenseEngine": "Default",
+  // "C_Cpp.clang_format_path": "C:/Users/longlp/scoop/apps/llvm/14.0.0/bin/clang-format.exe",
+  // "C_Cpp.clang_format_sortIncludes": true,
+  // "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+  // "C_Cpp.codeAnalysis.clangTidy.path": "C:/Users/longlp/scoop/apps/llvm/14.0.0/bin/clang-tidy.exe",
+  // "C_Cpp.codeAnalysis.runAutomatically": true,
+  "clangd.arguments": [
+    "--clang-tidy",
+    "--background-index",
+    "--offset-encoding=utf-8",
+    "--header-insertion=never",
+    "--compile-commands-dir=${workspaceFolder}/build"
+  ],
+  "clangd.path": "C:/Users/longlp/scoop/shims/clangd.exe",
+  "clangd.restartAfterCrash": true,
+  "editor.semanticHighlighting.enabled": true,
+  "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false,
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "C:\\tools\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+    // "VCPKG_TARGET_TRIPLET": "x64-windows",
+    // "VCPKG_PREFER_SYSTEM_LIBS": "ON"
+  },
+  "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake.exe",
+  "cmake.generator": "Ninja",
+  "cmake.preferredGenerators": [
+    "Ninja"
+  ],
+  "cmake.statusbar.visibility": "icon",
+  "cmakeFormat.exePath": "C:/tools/miniconda3/Scripts/cmake-format.exe",
+  "editor.formatOnSave": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///d%3A/modern-cpp-challenges/.github/workflows/build.yml"
+  },
+}

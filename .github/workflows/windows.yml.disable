@@ -1,0 +1,75 @@
+# Copyright 2022 Long Le Phi. All rights reserved.
+# Use of this source code is governed by a MIT license that can be
+# found in the LICENSE file.
+
+name: windows
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: ${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build_type: [Debug, Release]
+        os: [windows-2022]
+        platform: [Win32, x64]
+        standard: [17]
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Get latest cmake
+        uses: lukka/get-cmake@latest
+
+      - name: Create Build Environment
+        run: |
+          cmake -E make_directory ${{ runner.workspace }}/build
+
+      # Restore from cache the previously built ports. If a "cache miss" occurs,
+      # then vcpkg is bootstrapped. Since a the vcpkg.json is being used, no packages
+      # are installed at this time.
+      - name: Restore artifacts, or setup vcpkg (do not install any package)
+        uses: lukka/run-vcpkg@v10.2
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/external/vcpkg"
+          vcpkgJsonGlob: "${{ github.workspace }}/vcpkg.json"
+
+          # This is needed to run `vcpkg install` command (after vcpkg is built) in
+          # the directory where vcpkg.json has been located. Default is false,
+          # It is highly suggested to let `run-cmake` to run vcpkg (i.e. `false`)
+          # (i.e. let CMake run `vcpkg install`) using the vcpkg.cmake toolchain.
+          runVcpkgInstall: false
+
+      - name: Configure
+        working-directory: ${{ runner.workspace }}/build
+        shell: bash
+        env:
+          LONGLP_VCPKG_TOOLCHAIN_FILE: |
+            ${{ github.workspace }}/external/vcpkg/scripts/buildsystems/vcpkg.cmake
+        # Use single ticks for variable because directory slashes in Windows is painful
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+                -A ${{ matrix.platform }} \
+                -DCMAKE_TOOLCHAIN_FILE=$LONGLP_VCPKG_TOOLCHAIN_FILE \
+                -DCMAKE_CXX_STANDARD=${{ matrix.standard }} \
+                '${{ github.workspace }}'
+
+      - name: Build
+        working-directory: ${{ runner.workspace }}/build
+        run: |
+          $threads = (Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
+          cmake --build . --config ${{ matrix.build_type }} --parallel $threads
+
+      - name: Test
+        if: matrix.build_type == 'Debug'
+        working-directory: ${{ runner.workspace }}/build
+        run: ctest -C ${{ matrix.build_type }} -V
+        env:
+          CTEST_OUTPUT_ON_FAILURE: True
