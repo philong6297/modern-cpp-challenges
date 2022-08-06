@@ -1,0 +1,14 @@
+---
+Checks: >-
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+WarningsAsErrors: ""
+HeaderFilterRegex: ""
+AnalyzeTemporaryDtors: false
+FormatStyle: file
+User: Long Ph. Le
+InheritParentConfig: true
+CheckOptions:
+  - key: readability-identifier-length.MinimumVariableNameLength
+    value: 2
+---

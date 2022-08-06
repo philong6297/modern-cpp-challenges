@@ -13,7 +13,13 @@
 #include <cstdint>
 
 namespace longlp {
-  auto Solve(uint64_t limit) -> uint64_t;
+  inline constexpr auto Solve_1_1(uintmax_t upper_limit) -> uintmax_t {
+    const auto n15 = upper_limit / 15;
+    const auto n3  = upper_limit / 3;
+    const auto n5  = upper_limit / 5;
+
+    return (3 * n3 * (n3 + 1) + 5 * n5 * (n5 + 1) - 15 * n15 * (n15 + 1)) / 2;
+  }
 }   // namespace longlp
 
 #endif   // MATH_PROBLEMS_1_1_SOLUTION_HPP_

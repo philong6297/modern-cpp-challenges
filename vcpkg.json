@@ -3,7 +3,7 @@
   "name": "modern-cpp-challenges",
   "version-string": "1.0",
   "dependencies": [
-    "gtest",
+    "catch2",
     "nlohmann-json",
     "fmt"
   ]

@@ -30,12 +30,10 @@ longlp_desired_compile_options(LONGLP_DESIRED_COMPILE_OPTIONS)
 
 # ---- Third parties ----
 find_package(nlohmann_json CONFIG REQUIRED)
-find_package(GTest CONFIG REQUIRED)
+find_package(Catch2 3 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 
 add_subdirectory(${LONGLP_PROJECT_SRC_DIR})
 
 # ---- Test ----
-include(CTest)
-enable_testing()
 add_subdirectory(${LONGLP_PROJECT_TEST_DIR})

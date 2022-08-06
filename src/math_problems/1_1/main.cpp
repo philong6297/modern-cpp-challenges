@@ -4,6 +4,8 @@
 
 #include <cstdint>
 
+#include "math_problems/1_1/solution.hpp"
+
 auto main() -> int32_t {
   return 0;
 }
